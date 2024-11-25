@@ -54,12 +54,9 @@ async function fetchQuiz(URL: string) {
     const data = await response.json();
     // random questions
     quizArr = data.sort(() => Math.random() - 0.5);
-    console.log("quizArr: ", quizArr);
+
     return quizArr;
   } catch (error) {
     console.error(error);
   }
 }
-// test
-fetchQuiz(EN_EASY_ROUTE);
-// test
