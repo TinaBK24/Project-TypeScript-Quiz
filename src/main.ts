@@ -211,6 +211,8 @@ function playQuiz() {
     const target = event.target as HTMLInputElement;
     if(target.name === "radio"){
       reviewCheck(arrIndex);
+
+      disableRadioButtons();
     }
   })
 }
@@ -229,7 +231,6 @@ function reviewCheck(arrIndex: number){
     'input[name="radio"]:checked') as HTMLInputElement;
     if(selectedRadio){
       const selectedAnswer = Number(selectedRadio.value);
-      // selectedRadio.disabled
       
       if(correctAnswers === selectedAnswer){
         counterCorrect++
@@ -238,6 +239,16 @@ function reviewCheck(arrIndex: number){
         
       }
   }
+}
+
+function disableRadioButtons() {
+  const radioButtons = document.querySelectorAll(
+    'input[name="radio"]'
+  ) as NodeListOf<HTMLInputElement>;
+
+  radioButtons.forEach((radioButton) => {
+    radioButton.disabled = true;
+  });
 }
 
 // ^tina====================
