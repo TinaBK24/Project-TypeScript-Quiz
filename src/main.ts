@@ -1,13 +1,13 @@
 import "./style.css";
-import { IQuestion } from "./interface/IQuestion";
+import { IQuestion } from './interface/IQuestion';
 
 //: 1 seite EN DE
-const langBtns = document.getElementById("lang-buttons") as HTMLDivElement;
+const langBtnsDisplay = document.getElementById("lang-buttons-display") as HTMLDivElement;
 const enBtn = document.getElementById("english") as HTMLButtonElement;
 const deBtn = document.getElementById("german") as HTMLButtonElement;
 
 //: 2 seite EASY HARD
-const lvlBtns = document.getElementById("lvl-buttons") as HTMLDivElement;
+const lvlBtnsDisplay = document.getElementById("lvl-buttons-display") as HTMLDivElement;
 const easyBtn = document.getElementById("easy") as HTMLButtonElement;
 const hardBtn = document.getElementById("hard") as HTMLButtonElement;
 
@@ -40,6 +40,8 @@ const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 
 //: 5 seite RESULT
 const resultDisplay = document.getElementById("result") as HTMLDivElement;
+
+
 const BASE_URL = "https://vz-wd-24-01.github.io/typescript-quiz/questions/";
 const EN_EASY_ROUTE = `${BASE_URL}/easy.json`;
 const DE_EASY_ROUTE = `${BASE_URL}/leicht.json`;
@@ -63,3 +65,32 @@ async function fetchQuiz(URL: string) {
 // test
 fetchQuiz(EN_EASY_ROUTE);
 // test
+
+//- buttons für Sprache
+function langButtonsClick(this: HTMLButtonElement){
+  if(enBtn || deBtn){
+    langBtns.style.display = "none";
+    lvlBtns.style.display = "block";
+
+    if(this === enBtn){
+      easyBtn.textContent = "EASY";
+      hardBtn.textContent = "HARD"
+    } else if(this === deBtn){
+      easyBtn.textContent = "LEICHT";
+      hardBtn.textContent = "SCHWER"
+    }
+  }
+}
+enBtn?.addEventListener('click', langButtonsClick);
+deBtn?.addEventListener('click', langButtonsClick);
+
+
+//- buttons für level
+function lvlButtonsClick(btn: HTMLButtonElement){
+  const textButton = btn.textContent
+  switch(textButton){
+    case "EASY":
+      lvlBtns
+      startBtnDisplay.style.display = "block"
+  }
+}
