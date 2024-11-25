@@ -59,6 +59,7 @@ const EN_HARD_ROUTE = `${BASE_URL}/hard.json`;
 const DE_HARD_ROUTE = `${BASE_URL}/schwer.json`;
 
 let quizArr: IQuestion[] = [];
+let arrIndex: number = 0;
 
 async function fetchQuiz(URL: string) {
   try {
@@ -130,7 +131,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         const url = textButton === "EASY" ? EN_EASY_ROUTE : DE_EASY_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
 
-        displayQuiz(0);
+        displayQuiz(arrIndex);
       });
       break;
 
@@ -146,7 +147,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
 
-        displayQuiz(0);
+        displayQuiz(arrIndex);
       });
       break;
 
@@ -172,7 +173,28 @@ answerBox.addEventListener("click", () => {
   const selectedAnswer: number = Number(selectedRadio?.value);
   console.log(selectedAnswer);
 });
-// *Minyeong TEST==================================
 
-// *Minyeong TEST==================================
+function turnPage() {
+  if (arrIndex === 0) {
+    previouesBtn.style.display = "none";
+  } else if (arrIndex === 19) {
+    nextBtn.style.display = "none";
+  } else {
+    previouesBtn.style.display = "block";
+    nextBtn.style.display = "block";
+  }
+  //   ==============================
+}
+
+nextBtn.addEventListener("click", () => {
+  arrIndex++;
+  turnPage();
+  displayQuiz(arrIndex);
+});
+previouesBtn.addEventListener("click", () => {
+  arrIndex--;
+  turnPage();
+  displayQuiz(arrIndex);
+});
+
 // ^minyeong====================
