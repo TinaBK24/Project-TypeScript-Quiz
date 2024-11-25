@@ -1,13 +1,13 @@
 import "./style.css";
-import { IQuestion } from "./interface/IQuestion";
+import { IQuestion } from './interface/IQuestion';
 
 //: 1 seite EN DE
-const langBtns = document.getElementById("lang-buttons") as HTMLDivElement;
+const langBtnsDisplay = document.getElementById("lang-buttons-display") as HTMLDivElement;
 const enBtn = document.getElementById("english") as HTMLButtonElement;
 const deBtn = document.getElementById("german") as HTMLButtonElement;
 
 //: 2 seite EASY HARD
-const lvlBtns = document.getElementById("lvl-buttons") as HTMLDivElement;
+const lvlBtnsDisplay = document.getElementById("lvl-buttons-display") as HTMLDivElement;
 const easyBtn = document.getElementById("easy") as HTMLButtonElement;
 const hardBtn = document.getElementById("hard") as HTMLButtonElement;
 
@@ -18,7 +18,7 @@ const startBtnDisplay = document.getElementById(
 const startBtn = document.getElementById("start-button") as HTMLButtonElement;
 
 //: 4 seite QUESTION
-const quizStart = document.getElementById("quiz-start") as HTMLDivElement;
+const quizStartDisplay = document.getElementById("quiz-start-display") as HTMLDivElement;
 
 const numberQuiz = document.getElementById(
   "number-quiz"
@@ -40,6 +40,9 @@ const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 
 //: 5 seite RESULT
 const resultDisplay = document.getElementById("result") as HTMLDivElement;
+
+
+// ^minyeong====================
 const BASE_URL = "https://vz-wd-24-01.github.io/typescript-quiz/questions/";
 const EN_EASY_ROUTE = `${BASE_URL}/easy.json`;
 const DE_EASY_ROUTE = `${BASE_URL}/leicht.json`;
@@ -58,5 +61,61 @@ async function fetchQuiz(URL: string) {
     return quizArr;
   } catch (error) {
     console.error(error);
+  }
+}
+
+quizArr = (await fetchQuiz(EN_EASY_ROUTE)) as IQuestion[];
+console.log(quizArr);
+
+function displayQuiz(arrIndex: number) {
+  quizBoard.innerHTML = `<label class="question">${quizArr[arrIndex].question}</label>
+<div id="answerBox">
+    <label><input type="radio" name="radio" value="0">${quizArr[arrIndex].answers[0]}</label>
+    <label><input type="radio" name="radio" value="1">${quizArr[arrIndex].answers[1]}</label>
+    <label><input type="radio" name="radio" value="2">${quizArr[arrIndex].answers[2]}</label>
+    <label><input type="radio" name="radio" value="3">${quizArr[arrIndex].answers[3]}</label>
+</div>`;
+}
+
+displayQuiz(0);
+
+const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
+
+answerBox.addEventListener("click", () => {
+  const selectedRadio = document.querySelector(
+    'input[name="radio"]:checked'
+  ) as HTMLInputElement;
+  const selectedAnswer: number = Number(selectedRadio?.value);
+  console.log(selectedAnswer);
+});
+
+// ^minyeong====================
+
+//- buttons für Sprache
+function langButtonsClick(this: HTMLButtonElement){
+  if(enBtn || deBtn){
+    langBtnsDisplay.style.display = "none";
+    lvlBtnsDisplay.style.display = "block";
+
+    if(this === enBtn){
+      easyBtn.textContent = "EASY";
+      hardBtn.textContent = "HARD"
+    } else if(this === deBtn){
+      easyBtn.textContent = "LEICHT";
+      hardBtn.textContent = "SCHWER"
+    }
+  }
+}
+enBtn?.addEventListener('click', langButtonsClick);
+deBtn?.addEventListener('click', langButtonsClick);
+
+
+//- buttons für level
+function lvlButtonsClick(btn: HTMLButtonElement){
+  const textButton = btn.textContent;
+  switch(textButton){
+    case "EASY":
+      lvlBtnsDisplay.style.display = "none";
+      startBtnDisplay.style.display = "block";
   }
 }
