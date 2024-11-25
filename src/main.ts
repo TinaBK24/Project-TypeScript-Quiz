@@ -1,15 +1,19 @@
 import "./style.css";
-import { IQuestion } from './interface/IQuestion';
+import { IQuestion } from "./interface/IQuestion";
 
 // ^tina====================
 
 //: 1 seite EN DE
-const langBtnsDisplay = document.getElementById("lang-buttons-display") as HTMLDivElement;
+const langBtnsDisplay = document.getElementById(
+  "lang-buttons-display"
+) as HTMLDivElement;
 const enBtn = document.getElementById("english") as HTMLButtonElement;
 const deBtn = document.getElementById("german") as HTMLButtonElement;
 
 //: 2 seite EASY HARD
-const lvlBtnsDisplay = document.getElementById("lvl-buttons-display") as HTMLDivElement;
+const lvlBtnsDisplay = document.getElementById(
+  "lvl-buttons-display"
+) as HTMLDivElement;
 const easyBtn = document.getElementById("easy") as HTMLButtonElement;
 const hardBtn = document.getElementById("hard") as HTMLButtonElement;
 
@@ -20,7 +24,9 @@ const startBtnDisplay = document.getElementById(
 const startBtn = document.getElementById("start-button") as HTMLButtonElement;
 
 //: 4 seite QUESTION
-const quizStartDisplay = document.getElementById("quiz-start-display") as HTMLDivElement;
+const quizStartDisplay = document.getElementById(
+  "quiz-start-display"
+) as HTMLDivElement;
 
 const numberQuiz = document.getElementById(
   "number-quiz"
@@ -87,75 +93,73 @@ function displayQuiz(arrIndex: number) {
 // ^tina====================
 
 //- buttons für Sprache
-function langButtonsClick(this: HTMLButtonElement){
+function langButtonsClick(this: HTMLButtonElement) {
   langBtnsDisplay.style.display = "none";
   lvlBtnsDisplay.style.display = "block";
-  
-  if(this === enBtn){
+
+  if (this === enBtn) {
     easyBtn.textContent = "EASY";
     hardBtn.textContent = "HARD";
     previouesBtn.textContent = "Previous";
     nextBtn.textContent = "Next";
-  } else if(this === deBtn){
+  } else if (this === deBtn) {
     easyBtn.textContent = "LEICHT";
     hardBtn.textContent = "SCHWER";
     previouesBtn.textContent = "Zurück";
     nextBtn.textContent = "Weiter";
   } else {
     console.error("Buttons wurden nicht gefunden");
-    
   }
 }
-enBtn?.addEventListener('click', langButtonsClick);
-deBtn?.addEventListener('click', langButtonsClick);
-
+enBtn?.addEventListener("click", langButtonsClick);
+deBtn?.addEventListener("click", langButtonsClick);
 
 //- buttons für level
-function lvlButtonsClick(this: HTMLButtonElement){
+function lvlButtonsClick(this: HTMLButtonElement) {
   const textButton = this.textContent;
-  switch(textButton){
+  switch (textButton) {
     case "EASY":
     case "LEICHT":
       lvlBtnsDisplay.style.display = "none";
       startBtnDisplay.style.display = "block";
-      
-      startBtn?.addEventListener('click', async () =>{
+
+      startBtn?.addEventListener("click", async () => {
         startBtnDisplay.style.display = "none";
         quizStartDisplay.style.display = "block";
-        
+
         const url = textButton === "EASY" ? EN_EASY_ROUTE : DE_EASY_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
-        
+
         displayQuiz(0);
       });
-    break;
+      break;
 
     case "HARD":
     case "SCHWER":
       lvlBtnsDisplay.style.display = "none";
       startBtnDisplay.style.display = "block";
-      
-      startBtn?.addEventListener('click', async () => {
+
+      startBtn?.addEventListener("click", async () => {
         startBtnDisplay.style.display = "none";
         quizStartDisplay.style.display = "block";
-        
+
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
-        
+
         displayQuiz(0);
       });
-    break;
+      break;
 
     default:
-    if (enBtn.textContent === "English") {
-      console.error("Unknown level: ", textButton);
-    } else if (deBtn.textContent === "Deutsch") {
-      console.error("Unbekannter Schwierigkeitsgrad: ", textButton);
-    }
+      if (enBtn.textContent === "English") {
+        console.error("Unknown level: ", textButton);
+      } else if (deBtn.textContent === "Deutsch") {
+        console.error("Unbekannter Schwierigkeitsgrad: ", textButton);
+      }
   }
 }
-easyBtn?.addEventListener('click', lvlButtonsClick);
-hardBtn?.addEventListener('click', lvlButtonsClick);
+easyBtn?.addEventListener("click", lvlButtonsClick);
+hardBtn?.addEventListener("click", lvlButtonsClick);
 // ^tina====================
 
 // ^minyeong====================
@@ -168,5 +172,7 @@ answerBox.addEventListener("click", () => {
   const selectedAnswer: number = Number(selectedRadio?.value);
   console.log(selectedAnswer);
 });
+// *Minyeong TEST==================================
 
+// *Minyeong TEST==================================
 // ^minyeong====================
