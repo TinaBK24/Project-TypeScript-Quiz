@@ -9,7 +9,56 @@
 </head>
 
 <body>
+  <header>
+    <h1>
+      <a href="./index.html">TypeScript Quiz</a>
+    </h1>
+  </header>
 
+  <main>
+    <!-- 1 seite EN DE -->
+    <section id="lang-buttons">
+      <button type="button" id="english"></button>
+      <button type="button" id="german"></button>
+    </section>
+
+    <!-- 2 seite EASY HARD -->
+    <section id="lvl-buttons">
+      <button type="button" id="easy"></button>
+      <button type="button" id="hard"></button>
+    </section>
+
+    <!-- 3 seite START -->
+    <section id="start-button">
+      <button type="button">START</button>
+    </section>
+
+    <!-- 4 seite QUESTION -->
+    <section id="quiz-start">
+      <div class="number-display">
+        <p id="number-quiz"></p>
+        <p id="number-correct"></p>
+      </div>
+      <article id="quiz-board">
+        <!-- <label id="question"></label>
+        <div>
+          <input type="radio" name="" id="">
+        </div> -->
+      </article>
+
+      <article id="correct-or-incorrect-display"></article>
+
+      <div class="pages-buttons">
+        <button type="button" id="previoues-btn"></button>
+        <button type="button" id="next-btn"></button>
+      </div>
+    </section>
+
+    <!-- 5 seite RESULT -->
+    <section id="result">
+
+    </section>
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
