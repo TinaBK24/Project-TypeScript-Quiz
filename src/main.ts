@@ -74,9 +74,6 @@ async function fetchQuiz(URL: string) {
   }
 }
 
-quizArr = (await fetchQuiz(EN_EASY_ROUTE)) as IQuestion[];
-console.log(quizArr);
-
 function displayQuiz(arrIndex: number) {
   quizBoard.innerHTML = `<label class="question">${quizArr[arrIndex].question}</label>
 <div id="answerBox">
@@ -86,8 +83,6 @@ function displayQuiz(arrIndex: number) {
     <label><input type="radio" name="radio" value="3">${quizArr[arrIndex].answers[3]}</label>
 </div>`;
 }
-
-// displayQuiz(0);
 
 // ^minyeong====================
 
@@ -130,8 +125,21 @@ function lvlButtonsClick(this: HTMLButtonElement) {
 
         const url = textButton === "EASY" ? EN_EASY_ROUTE : DE_EASY_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
+        console.log(quizArr);
 
         displayQuiz(arrIndex);
+        nextBtn.addEventListener("click", () => {
+          arrIndex++;
+          turnPage();
+          displayQuiz(arrIndex);
+          console.log(arrIndex);
+        });
+        previouesBtn.addEventListener("click", () => {
+          arrIndex--;
+          turnPage();
+          displayQuiz(arrIndex);
+          console.log(arrIndex);
+        });
       });
       break;
 
@@ -146,8 +154,20 @@ function lvlButtonsClick(this: HTMLButtonElement) {
 
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
-
+        console.log(quizArr);
         displayQuiz(arrIndex);
+        nextBtn.addEventListener("click", () => {
+          arrIndex++;
+          turnPage();
+          displayQuiz(arrIndex);
+          console.log(arrIndex);
+        });
+        previouesBtn.addEventListener("click", () => {
+          arrIndex--;
+          turnPage();
+          displayQuiz(arrIndex);
+          console.log(arrIndex);
+        });
       });
       break;
 
@@ -185,16 +205,5 @@ function turnPage() {
   }
   //   ==============================
 }
-
-nextBtn.addEventListener("click", () => {
-  arrIndex++;
-  turnPage();
-  displayQuiz(arrIndex);
-});
-previouesBtn.addEventListener("click", () => {
-  arrIndex--;
-  turnPage();
-  displayQuiz(arrIndex);
-});
 
 // ^minyeong====================
