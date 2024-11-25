@@ -170,15 +170,11 @@ hardBtn?.addEventListener("click", lvlButtonsClick);
 // ^tina====================
 
 // ^minyeong====================
-const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
+// const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
 
-answerBox.addEventListener("click", () => {
-  const selectedRadio = document.querySelector(
-    'input[name="radio"]:checked'
-  ) as HTMLInputElement;
-  const selectedAnswer: number = Number(selectedRadio?.value);
-  console.log(selectedAnswer);
-});
+// answerBox.addEventListener("click", () => {
+//   console.log(selectedRadio.value);
+// });
 
 function turnPage() {
   if (arrIndex === 0) {
@@ -214,20 +210,18 @@ function displayPageNumber() {
   numberQuiz.textContent = `${arrIndex + 1} / 20 Questions`;
 }
 // *minyeong test=========================
-function countCorrect() {
-  // if correct --->counter ++ und zeigen
-}
+
 // *========================================
 // ^minyeong====================
 
 // ^tina====================
 
-function reviewCheck(arrIndex: number) {
-  const correctAnswers = quizArray.map((quiz) => quiz.correct);
-  console.log(correctAnswers);
+// function reviewCheck(arrIndex: number) {
+//   const correctAnswers = quizArray.map((quiz) => quiz.correct);
+//   console.log(correctAnswers);
 
-  if (correctAnswers === selectedRadio.value) {
-  }
-}
+//   if (correctAnswers === selectedRadio.value) {
+//   }
+// }
 
 // ^tina====================
