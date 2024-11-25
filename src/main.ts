@@ -66,6 +66,8 @@ let quizArr: IQuestion[] = [];
 let arrIndex: number = 0;
 let counterCorrect: number = 0;
 
+let selectedAnswers: (number | null)[] = Array(20).fill(null); //! Array zum Speichern der ausgewählten Antworten
+
 async function fetchQuiz(URL: string) {
   try {
     const response: Response = await fetch(URL);
@@ -88,8 +90,21 @@ function displayQuiz(arrIndex: number) {
     <label><input type="radio" name="radio" value="3">${quizArr[arrIndex].answers[3]}</label>
 </div>`;
   displayPageNumber();
-}
 
+  //! Wenn eine Auswahl bereits getroffen wurde, wird die entsprechende Radio-Button gesetzt
+  const selectedAnswer = selectedAnswers[arrIndex];
+  if (selectedAnswer !== null) {
+    const radioButton = quizBoard.querySelector(
+      `input[name="radio"][value="${selectedAnswer}"]`
+    ) as HTMLInputElement;
+    if (radioButton) {
+      radioButton.checked = true; //! Setzt die Auswahl
+      disableRadioButtons(); //! Sperrt die Buttons
+    }
+  }
+
+  displayPageNumber();
+  }
 // ^minyeong====================
 
 // ^tina====================
@@ -204,9 +219,13 @@ function playQuiz() {
   quizBoard.addEventListener("change", (event) => {
     const target = event.target as HTMLInputElement;
     if (target.name === "radio") {
-      reviewCheck(arrIndex);
+      const selectedAnswer = Number(target.value);
 
-      disableRadioButtons();
+      selectedAnswers[arrIndex] = selectedAnswer; //! Speichert die Auswahl für die aktuelle Frage
+
+      reviewCheck(arrIndex); //! Überprüft die Antwort
+
+      disableRadioButtons(); //! Sperrt die Radio-Buttons
     }
   });
 }
@@ -243,6 +262,7 @@ function reviewCheck(arrIndex: number) {
   }
 }
 
+//! Funktion zum Sperren der Radio-Buttons nach der Auswahl
 function disableRadioButtons() {
   const radioButtons = document.querySelectorAll(
     'input[name="radio"]'
@@ -252,5 +272,8 @@ function disableRadioButtons() {
     radioButton.disabled = true;
   });
 }
+
+
+
 
 // ^tina====================
