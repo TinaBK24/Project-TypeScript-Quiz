@@ -207,3 +207,14 @@ function turnPage() {
 }
 
 // ^minyeong====================
+
+// ^tina====================
+
+function reviewCheck(){
+  const correctValue = quizArr.map(quiz => quiz.correct)
+  console.log(correctValue);
+  
+}
+reviewCheck()
+
+// ^tina====================
