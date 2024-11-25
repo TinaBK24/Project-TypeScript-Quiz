@@ -37,9 +37,9 @@ const numberCorrect = document.getElementById(
 
 const quizBoard = document.getElementById("quiz-board") as HTMLDivElement;
 
-const selectedRadio = document.querySelector(
-  'input[name="radio"]:checked'
-) as HTMLInputElement;
+// const selectedRadio = document.querySelector(
+//   'input[name="radio"]:checked'
+// ) as HTMLInputElement;
 
 const correctOrIncorrectDisplay = document.getElementById(
   "correct-or-incorrect-display"
@@ -218,15 +218,19 @@ const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
 
 function reviewCheck(arrIndex: number) {
   const correctAnswers = quizArr[arrIndex].correct;
+  console.log(correctAnswers);
+  const selectedRadio = document.querySelector(
+    'input[name="radio"]:checked'
+  ) as HTMLInputElement;
+  if (selectedRadio) {
+    const selectedAnswer = Number(selectedRadio.value);
+    // selectedRadio.disabled
 
-  answerBox.addEventListener("click", () => {
-    const selectedAnswer: number = Number(selectedRadio?.value);
-    console.log("selectedValue", selectedAnswer);
-  });
-
-  if (correctAnswers === Number(selectedRadio.value)) {
-    numberCorrect.textContent = `Score: ${counterCorrect + 1} / 20`;
-    console.log(numberCorrect.textContent);
+    if (correctAnswers === selectedAnswer) {
+      counterCorrect++;
+      numberCorrect.textContent = `Score: ${counterCorrect} / 20`;
+      console.log(numberCorrect.textContent);
+    }
   }
 }
 
