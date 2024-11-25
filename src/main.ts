@@ -1,6 +1,8 @@
 import "./style.css";
 import { IQuestion } from './interface/IQuestion';
 
+// ^tina====================
+
 //: 1 seite EN DE
 const langBtnsDisplay = document.getElementById("lang-buttons-display") as HTMLDivElement;
 const enBtn = document.getElementById("english") as HTMLButtonElement;
@@ -41,6 +43,7 @@ const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 //: 5 seite RESULT
 const resultDisplay = document.getElementById("result") as HTMLDivElement;
 
+// ^tina====================
 
 // ^minyeong====================
 const BASE_URL = "https://vz-wd-24-01.github.io/typescript-quiz/questions/";
@@ -77,8 +80,85 @@ function displayQuiz(arrIndex: number) {
 </div>`;
 }
 
-displayQuiz(0);
+// displayQuiz(0);
 
+// ^minyeong====================
+
+// ^tina====================
+
+//- buttons für Sprache
+function langButtonsClick(this: HTMLButtonElement){
+  langBtnsDisplay.style.display = "none";
+  lvlBtnsDisplay.style.display = "block";
+  
+  if(this === enBtn){
+    easyBtn.textContent = "EASY";
+    hardBtn.textContent = "HARD";
+    previouesBtn.textContent = "Previous";
+    nextBtn.textContent = "Next";
+  } else if(this === deBtn){
+    easyBtn.textContent = "LEICHT";
+    hardBtn.textContent = "SCHWER";
+    previouesBtn.textContent = "Zurück";
+    nextBtn.textContent = "Weiter";
+  } else {
+    console.error("Buttons wurden nicht gefunden");
+    
+  }
+}
+enBtn?.addEventListener('click', langButtonsClick);
+deBtn?.addEventListener('click', langButtonsClick);
+
+
+//- buttons für level
+function lvlButtonsClick(this: HTMLButtonElement){
+  const textButton = this.textContent;
+  switch(textButton){
+    case "EASY":
+    case "LEICHT":
+      lvlBtnsDisplay.style.display = "none";
+      startBtnDisplay.style.display = "block";
+      
+      startBtn?.addEventListener('click', async () =>{
+        startBtnDisplay.style.display = "none";
+        quizStartDisplay.style.display = "block";
+        
+        const url = textButton === "EASY" ? EN_EASY_ROUTE : DE_EASY_ROUTE;
+        quizArr = (await fetchQuiz(url)) as IQuestion[];
+        
+        displayQuiz(0);
+      });
+    break;
+
+    case "HARD":
+    case "SCHWER":
+      lvlBtnsDisplay.style.display = "none";
+      startBtnDisplay.style.display = "block";
+      
+      startBtn?.addEventListener('click', async () => {
+        startBtnDisplay.style.display = "none";
+        quizStartDisplay.style.display = "block";
+        
+        const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
+        quizArr = (await fetchQuiz(url)) as IQuestion[];
+        
+        displayQuiz(0);
+      });
+    break;
+
+    default:
+    if (enBtn.textContent === "English") {
+      console.error("Unknown level: ", textButton);
+    } else if (deBtn.textContent === "Deutsch") {
+      console.error("Unbekannter Schwierigkeitsgrad: ", textButton);
+    }
+  }
+}
+easyBtn?.addEventListener('click', lvlButtonsClick);
+hardBtn?.addEventListener('click', lvlButtonsClick);
+// ^tina====================
+
+// ^minyeong====================
 const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
 
 answerBox.addEventListener("click", () => {
@@ -90,32 +170,3 @@ answerBox.addEventListener("click", () => {
 });
 
 // ^minyeong====================
-
-//- buttons für Sprache
-function langButtonsClick(this: HTMLButtonElement){
-  if(enBtn || deBtn){
-    langBtnsDisplay.style.display = "none";
-    lvlBtnsDisplay.style.display = "block";
-
-    if(this === enBtn){
-      easyBtn.textContent = "EASY";
-      hardBtn.textContent = "HARD"
-    } else if(this === deBtn){
-      easyBtn.textContent = "LEICHT";
-      hardBtn.textContent = "SCHWER"
-    }
-  }
-}
-enBtn?.addEventListener('click', langButtonsClick);
-deBtn?.addEventListener('click', langButtonsClick);
-
-
-//- buttons für level
-function lvlButtonsClick(btn: HTMLButtonElement){
-  const textButton = btn.textContent;
-  switch(textButton){
-    case "EASY":
-      lvlBtnsDisplay.style.display = "none";
-      startBtnDisplay.style.display = "block";
-  }
-}
