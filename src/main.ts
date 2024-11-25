@@ -62,6 +62,7 @@ const DE_HARD_ROUTE = `${BASE_URL}/schwer.json`;
 
 let quizArr: IQuestion[] = [];
 let arrIndex: number = 0;
+let counterCorrect: number = 0;
 
 async function fetchQuiz(URL: string) {
   try {
@@ -130,8 +131,6 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
 
-        // reviewCheck(quizArr);
-
         playQuiz()
       });
       break;
@@ -148,8 +147,6 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
-
-        // reviewCheck(quizArr);
 
         playQuiz()
       });
@@ -168,15 +165,15 @@ hardBtn?.addEventListener("click", lvlButtonsClick);
 // ^tina====================
 
 // ^minyeong====================
-const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
+// const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
 
-answerBox.addEventListener("click", () => {
-  const selectedRadio = document.querySelector(
-    'input[name="radio"]:checked'
-  ) as HTMLInputElement;
-  const selectedAnswer: number = Number(selectedRadio?.value);
-  console.log(selectedAnswer);
-});
+// answerBox.addEventListener("click", () => {
+//   const selectedRadio = document.querySelector(
+//     'input[name="radio"]:checked'
+//   ) as HTMLInputElement;
+//   const selectedAnswer: number = Number(selectedRadio?.value);
+//   console.log(selectedAnswer);
+// });
 
 function turnPage() {
   if (arrIndex === 0) {
@@ -199,6 +196,7 @@ function playQuiz() {
 
     console.log(arrIndex);
   });
+
   previouesBtn.addEventListener("click", () => {
     arrIndex--;
     turnPage();
@@ -206,6 +204,13 @@ function playQuiz() {
 
     console.log(arrIndex);
   });
+
+  quizBoard.addEventListener('change', (event) => {
+    const target = event.target as HTMLInputElement;
+    if(target.name === "radio"){
+      reviewCheck(arrIndex);
+    }
+  })
 }
 
 function displayPageNumber() {
@@ -221,10 +226,14 @@ function countCorrect() {
 // ^tina====================
 
 function reviewCheck(arrIndex: number){
-  const correctAnswers = quizArray.map((quiz) => quiz.correct)
+  const correctAnswers = quizArr[arrIndex].correct
   console.log(correctAnswers);
   
-  if(correctAnswers === selectedRadio.value){}
+  if(correctAnswers === Number(selectedRadio.value)){
+    numberCorrect.textContent = `Score: ${counterCorrect + 1} / 20`;
+    console.log(numberCorrect.textContent);
+    
+  }
 }
 
 
