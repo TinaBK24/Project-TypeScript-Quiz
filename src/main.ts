@@ -1,13 +1,17 @@
 import "./style.css";
-import { IQuestion } from './interface/IQuestion';
+import { IQuestion } from "./interface/IQuestion";
 
 //: 1 seite EN DE
-const langBtnsDisplay = document.getElementById("lang-buttons-display") as HTMLDivElement;
+const langBtnsDisplay = document.getElementById(
+  "lang-buttons-display"
+) as HTMLDivElement;
 const enBtn = document.getElementById("english") as HTMLButtonElement;
 const deBtn = document.getElementById("german") as HTMLButtonElement;
 
 //: 2 seite EASY HARD
-const lvlBtnsDisplay = document.getElementById("lvl-buttons-display") as HTMLDivElement;
+const lvlBtnsDisplay = document.getElementById(
+  "lvl-buttons-display"
+) as HTMLDivElement;
 const easyBtn = document.getElementById("easy") as HTMLButtonElement;
 const hardBtn = document.getElementById("hard") as HTMLButtonElement;
 
@@ -18,7 +22,9 @@ const startBtnDisplay = document.getElementById(
 const startBtn = document.getElementById("start-button") as HTMLButtonElement;
 
 //: 4 seite QUESTION
-const quizStartDisplay = document.getElementById("quiz-start-display") as HTMLDivElement;
+const quizStartDisplay = document.getElementById(
+  "quiz-start-display"
+) as HTMLDivElement;
 
 const numberQuiz = document.getElementById(
   "number-quiz"
@@ -40,7 +46,6 @@ const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 
 //: 5 seite RESULT
 const resultDisplay = document.getElementById("result") as HTMLDivElement;
-
 
 // ^minyeong====================
 const BASE_URL = "https://vz-wd-24-01.github.io/typescript-quiz/questions/";
@@ -88,32 +93,33 @@ answerBox.addEventListener("click", () => {
   const selectedAnswer: number = Number(selectedRadio?.value);
   console.log(selectedAnswer);
 });
+// *Minyeong TEST==================================
 
+// *Minyeong TEST==================================
 // ^minyeong====================
 
 //- buttons für Sprache
-function langButtonsClick(this: HTMLButtonElement){
-  if(enBtn || deBtn){
+function langButtonsClick(this: HTMLButtonElement) {
+  if (enBtn || deBtn) {
     langBtnsDisplay.style.display = "none";
     lvlBtnsDisplay.style.display = "block";
 
-    if(this === enBtn){
+    if (this === enBtn) {
       easyBtn.textContent = "EASY";
-      hardBtn.textContent = "HARD"
-    } else if(this === deBtn){
+      hardBtn.textContent = "HARD";
+    } else if (this === deBtn) {
       easyBtn.textContent = "LEICHT";
-      hardBtn.textContent = "SCHWER"
+      hardBtn.textContent = "SCHWER";
     }
   }
 }
-enBtn?.addEventListener('click', langButtonsClick);
-deBtn?.addEventListener('click', langButtonsClick);
-
+enBtn?.addEventListener("click", langButtonsClick);
+deBtn?.addEventListener("click", langButtonsClick);
 
 //- buttons für level
-function lvlButtonsClick(btn: HTMLButtonElement){
+function lvlButtonsClick(btn: HTMLButtonElement) {
   const textButton = btn.textContent;
-  switch(textButton){
+  switch (textButton) {
     case "EASY":
       lvlBtnsDisplay.style.display = "none";
       startBtnDisplay.style.display = "block";
