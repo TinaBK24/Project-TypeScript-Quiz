@@ -37,6 +37,8 @@ const numberCorrect = document.getElementById(
 
 const quizBoard = document.getElementById("quiz-board") as HTMLDivElement;
 
+const selectedRadio = document.querySelector('input[name="radio"]:checked') as HTMLInputElement;
+
 const correctOrIncorrectDisplay = document.getElementById(
   "correct-or-incorrect-display"
 ) as HTMLDivElement;
@@ -127,6 +129,8 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
 
+        reviewCheck(quizArr);
+
         displayQuiz(arrIndex);
         nextBtn.addEventListener("click", () => {
           arrIndex++;
@@ -155,6 +159,9 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
+
+        reviewCheck(quizArr);
+
         displayQuiz(arrIndex);
         nextBtn.addEventListener("click", () => {
           arrIndex++;
@@ -210,11 +217,12 @@ function turnPage() {
 
 // ^tina====================
 
-function reviewCheck(){
-  const correctValue = quizArr.map(quiz => quiz.correct)
-  console.log(correctValue);
+function reviewCheck(quizArray: IQuestion[]){
+  const correctAnswers = quizArray.map((quiz) => quiz.correct)
+  console.log(correctAnswers);
   
+  if(correctAnswers === selectedRadio.value){}
 }
-reviewCheck()
+
 
 // ^tina====================
