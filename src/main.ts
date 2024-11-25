@@ -37,7 +37,9 @@ const numberCorrect = document.getElementById(
 
 const quizBoard = document.getElementById("quiz-board") as HTMLDivElement;
 
-const selectedRadio = document.querySelector('input[name="radio"]:checked') as HTMLInputElement;
+const selectedRadio = document.querySelector(
+  'input[name="radio"]:checked'
+) as HTMLInputElement;
 
 const correctOrIncorrectDisplay = document.getElementById(
   "correct-or-incorrect-display"
@@ -244,12 +246,12 @@ function countCorrect() {
 
 // ^tina====================
 
-function reviewCheck(quizArray: IQuestion[]){
-  const correctAnswers = quizArray.map((quiz) => quiz.correct)
+function reviewCheck(quizArray: IQuestion[]) {
+  const correctAnswers = quizArray.map((quiz) => quiz.correct);
   console.log(correctAnswers);
-  
-  if(correctAnswers === selectedRadio.value){}
-}
 
+  if (correctAnswers === selectedRadio.value) {
+  }
+}
 
 // ^tina====================
