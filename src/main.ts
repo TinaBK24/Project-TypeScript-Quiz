@@ -102,11 +102,13 @@ function langButtonsClick(this: HTMLButtonElement) {
   if (this === enBtn) {
     easyBtn.textContent = "EASY";
     hardBtn.textContent = "HARD";
+    easyBtn.style.marginRight = "2rem";
     previouesBtn.textContent = "Previous";
     nextBtn.textContent = "Next";
   } else if (this === deBtn) {
     easyBtn.textContent = "LEICHT";
     hardBtn.textContent = "SCHWER";
+    easyBtn.style.marginRight = "2rem";
     previouesBtn.textContent = "Zurück";
     nextBtn.textContent = "Weiter";
   } else {
@@ -184,18 +186,19 @@ function playQuiz() {
 
   nextBtn.addEventListener("click", () => {
     arrIndex++;
+    quizBoard.style.display = "block";
+    correctOrIncorrectDisplay.style.display = "none";
     turnPage();
     displayQuiz(arrIndex);
-
-    console.log(arrIndex);
   });
 
   previouesBtn.addEventListener("click", () => {
     arrIndex--;
+    quizBoard.style.display = "block";
+    correctOrIncorrectDisplay.style.display = "none";
+
     turnPage();
     displayQuiz(arrIndex);
-
-    console.log(arrIndex);
   });
 
   quizBoard.addEventListener("change", (event) => {
@@ -210,26 +213,30 @@ function displayPageNumber() {
   numberQuiz.textContent = `${arrIndex + 1} / 20 Questions`;
 }
 
-const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
-
 // ^minyeong====================
 
 // ^tina====================
 
 function reviewCheck(arrIndex: number) {
   const correctAnswers = quizArr[arrIndex].correct;
-  console.log(correctAnswers);
+  console.log("correctAnswser:", correctAnswers);
+
   const selectedRadio = document.querySelector(
     'input[name="radio"]:checked'
   ) as HTMLInputElement;
+
   if (selectedRadio) {
     const selectedAnswer = Number(selectedRadio.value);
-    // selectedRadio.disabled
+
+    quizBoard.style.display = "none";
+    correctOrIncorrectDisplay.style.display = "block";
 
     if (correctAnswers === selectedAnswer) {
       counterCorrect++;
       numberCorrect.textContent = `Score: ${counterCorrect} / 20`;
-      console.log(numberCorrect.textContent);
+      correctOrIncorrectDisplay.textContent = "✅";
+    } else {
+      correctOrIncorrectDisplay.textContent = "❌";
     }
   }
 }

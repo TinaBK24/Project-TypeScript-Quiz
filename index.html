@@ -7,22 +7,22 @@
     <title>TypeScript Quiz</title>
   </head>
 
-  <body>
+  <body class="flex">
     <header>
       <h1>
         <a href="./index.html">TypeScript Quiz</a>
       </h1>
     </header>
 
-    <main>
+    <main class="flex">
       <!-- 1 seite EN DE -->
-      <section id="lang-buttons-display">
+      <section id="lang-buttons-display" class="flex">
         <button type="button" id="english">English</button>
         <button type="button" id="german">Deutsch</button>
       </section>
 
       <!-- 2 seite EASY HARD -->
-      <section id="lvl-buttons-display" style="display: none">
+      <section id="lvl-buttons-display" class="flex" style="display: none">
         <button type="button" id="easy"></button>
         <button type="button" id="hard"></button>
       </section>
@@ -33,19 +33,23 @@
       </section>
 
       <!-- 4 seite QUESTION -->
-      <section id="quiz-start-display" style="display: none">
-        <div class="number-display">
+      <section
+        id="quiz-start-display"
+        class="quiz-start-display flex"
+        style="display: none"
+      >
+        <div class="number-display flex">
           <p id="number-quiz"></p>
           <p id="number-correct">Score: 0 / 20</p>
         </div>
-        <article id="quiz-board"></article>
+        <article id="quiz-board" class="flex quiz_board"></article>
 
         <article
           id="correct-or-incorrect-display"
           style="display: none"
         ></article>
 
-        <div class="pages-buttons">
+        <div class="pages-buttons flex">
           <button type="button" id="previoues-btn"></button>
           <button type="button" id="next-btn"></button>
         </div>
