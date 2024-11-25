@@ -130,21 +130,9 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
 
-        reviewCheck(quizArr);
+        // reviewCheck(quizArr);
 
-        displayQuiz(arrIndex);
-        nextBtn.addEventListener("click", () => {
-          arrIndex++;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
-        previouesBtn.addEventListener("click", () => {
-          arrIndex--;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
+        playQuiz()
       });
       break;
 
@@ -161,21 +149,9 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
 
-        reviewCheck(quizArr);
+        // reviewCheck(quizArr);
 
-        displayQuiz(arrIndex);
-        nextBtn.addEventListener("click", () => {
-          arrIndex++;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
-        previouesBtn.addEventListener("click", () => {
-          arrIndex--;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
+        playQuiz()
       });
       break;
 
@@ -244,7 +220,7 @@ function countCorrect() {
 
 // ^tina====================
 
-function reviewCheck(quizArray: IQuestion[]){
+function reviewCheck(arrIndex: number){
   const correctAnswers = quizArray.map((quiz) => quiz.correct)
   console.log(correctAnswers);
   
