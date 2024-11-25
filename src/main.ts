@@ -167,15 +167,6 @@ hardBtn?.addEventListener("click", lvlButtonsClick);
 // ^tina====================
 
 // ^minyeong====================
-// const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
-
-// answerBox.addEventListener("click", () => {
-//   const selectedRadio = document.querySelector(
-//     'input[name="radio"]:checked'
-//   ) as HTMLInputElement;
-//   const selectedAnswer: number = Number(selectedRadio?.value);
-//   console.log(selectedAnswer);
-// });
 
 function turnPage() {
   if (arrIndex === 0) {
@@ -218,13 +209,20 @@ function playQuiz() {
 function displayPageNumber() {
   numberQuiz.textContent = `${arrIndex + 1} / 20 Questions`;
 }
+
+const answerBox = document.querySelector("#answerBox") as HTMLDivElement;
+
 // ^minyeong====================
 
 // ^tina====================
 
 function reviewCheck(arrIndex: number) {
   const correctAnswers = quizArr[arrIndex].correct;
-  console.log(correctAnswers);
+
+  answerBox.addEventListener("click", () => {
+    const selectedAnswer: number = Number(selectedRadio?.value);
+    console.log("selectedValue", selectedAnswer);
+  });
 
   if (correctAnswers === Number(selectedRadio.value)) {
     numberCorrect.textContent = `Score: ${counterCorrect + 1} / 20`;
