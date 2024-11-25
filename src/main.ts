@@ -205,6 +205,8 @@ function playQuiz() {
     const target = event.target as HTMLInputElement;
     if (target.name === "radio") {
       reviewCheck(arrIndex);
+
+      disableRadioButtons();
     }
   });
 }
@@ -239,6 +241,16 @@ function reviewCheck(arrIndex: number) {
       correctOrIncorrectDisplay.textContent = "❌";
     }
   }
+}
+
+function disableRadioButtons() {
+  const radioButtons = document.querySelectorAll(
+    'input[name="radio"]'
+  ) as NodeListOf<HTMLInputElement>;
+
+  radioButtons.forEach((radioButton) => {
+    radioButton.disabled = true;
+  });
 }
 
 // ^tina====================
