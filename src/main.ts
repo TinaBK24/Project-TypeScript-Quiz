@@ -82,6 +82,7 @@ function displayQuiz(arrIndex: number) {
     <label><input type="radio" name="radio" value="2">${quizArr[arrIndex].answers[2]}</label>
     <label><input type="radio" name="radio" value="3">${quizArr[arrIndex].answers[3]}</label>
 </div>`;
+  displayPageNumber();
 }
 
 // ^minyeong====================
@@ -127,19 +128,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
 
-        displayQuiz(arrIndex);
-        nextBtn.addEventListener("click", () => {
-          arrIndex++;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
-        previouesBtn.addEventListener("click", () => {
-          arrIndex--;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
+        playQuiz();
       });
       break;
 
@@ -155,19 +144,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
         console.log(quizArr);
-        displayQuiz(arrIndex);
-        nextBtn.addEventListener("click", () => {
-          arrIndex++;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
-        previouesBtn.addEventListener("click", () => {
-          arrIndex--;
-          turnPage();
-          displayQuiz(arrIndex);
-          console.log(arrIndex);
-        });
+        playQuiz();
       });
       break;
 
@@ -203,18 +180,43 @@ function turnPage() {
     previouesBtn.style.display = "block";
     nextBtn.style.display = "block";
   }
-  //   ==============================
 }
 
+function playQuiz() {
+  displayQuiz(arrIndex);
+
+  nextBtn.addEventListener("click", () => {
+    arrIndex++;
+    turnPage();
+    displayQuiz(arrIndex);
+
+    console.log(arrIndex);
+  });
+  previouesBtn.addEventListener("click", () => {
+    arrIndex--;
+    turnPage();
+    displayQuiz(arrIndex);
+
+    console.log(arrIndex);
+  });
+}
+
+function displayPageNumber() {
+  numberQuiz.textContent = `${arrIndex + 1} / 20 Questions`;
+}
+// *minyeong test=========================
+function countCorrect() {
+  // if correct --->counter ++ und zeigen
+}
+// *========================================
 // ^minyeong====================
 
 // ^tina====================
 
-function reviewCheck(){
-  const correctValue = quizArr.map(quiz => quiz.correct)
+function reviewCheck() {
+  const correctValue = quizArr.map((quiz) => quiz.correct);
   console.log(correctValue);
-  
 }
-reviewCheck()
+reviewCheck();
 
 // ^tina====================

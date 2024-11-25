@@ -1,65 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeScript Quiz</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TypeScript Quiz</title>
-</head>
+  <body>
+    <header>
+      <h1>
+        <a href="./index.html">TypeScript Quiz</a>
+      </h1>
+    </header>
 
-<body>
-  <header>
-    <h1>
-      <a href="./index.html">TypeScript Quiz</a>
-    </h1>
-  </header>
+    <main>
+      <!-- 1 seite EN DE -->
+      <section id="lang-buttons-display">
+        <button type="button" id="english">English</button>
+        <button type="button" id="german">Deutsch</button>
+      </section>
 
-  <main>
-    <!-- 1 seite EN DE -->
-    <section id="lang-buttons-display">
-      <button type="button" id="english">English</button>
-      <button type="button" id="german">Deutsch</button>
-    </section>
+      <!-- 2 seite EASY HARD -->
+      <section id="lvl-buttons-display" style="display: none">
+        <button type="button" id="easy"></button>
+        <button type="button" id="hard"></button>
+      </section>
 
-    <!-- 2 seite EASY HARD -->
-    <section id="lvl-buttons-display" style="display: none;">
-      <button type="button" id="easy"></button>
-      <button type="button" id="hard"></button>
-    </section>
+      <!-- 3 seite START -->
+      <section id="start-button-display" style="display: none">
+        <button type="button" id="start-button">START</button>
+      </section>
 
-    <!-- 3 seite START -->
-    <section id="start-button-display" style="display: none;">
-      <button type="button" id="start-button">START</button>
-    </section>
+      <!-- 4 seite QUESTION -->
+      <section id="quiz-start-display" style="display: none">
+        <div class="number-display">
+          <p id="number-quiz"></p>
+          <p id="number-correct"></p>
+        </div>
+        <article id="quiz-board"></article>
 
-    <!-- 4 seite QUESTION -->
-    <section id="quiz-start-display" style="display: none;">
-      <div class="number-display">
-        <p id="number-quiz"></p>
-        <p id="number-correct"></p>
-      </div>
-      <article id="quiz-board">
-        <!-- <label id="question"></label>
-        <div>
-          <input type="radio" name="" id="">
-        </div> -->
-      </article>
+        <article
+          id="correct-or-incorrect-display"
+          style="display: none"
+        ></article>
 
-      <article id="correct-or-incorrect-display" style="display: none;"></article>
+        <div class="pages-buttons">
+          <button type="button" id="previoues-btn"></button>
+          <button type="button" id="next-btn"></button>
+        </div>
+      </section>
 
-      <div class="pages-buttons">
-        <button type="button" id="previoues-btn"></button>
-        <button type="button" id="next-btn"></button>
-      </div>
-    </section>
-
-    <!-- 5 seite RESULT -->
-    <section id="result" style="display: none;">
-
-    </section>
-  </main>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+      <!-- 5 seite RESULT -->
+      <section id="result" style="display: none"></section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
