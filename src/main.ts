@@ -37,9 +37,9 @@ const numberCorrect = document.getElementById(
 
 const quizBoard = document.getElementById("quiz-board") as HTMLDivElement;
 
-const selectedRadio = document.querySelector(
-  'input[name="radio"]:checked'
-) as HTMLInputElement;
+// const selectedRadio = document.querySelector(
+//   'input[name="radio"]:checked'
+// ) as HTMLInputElement;
 
 const correctOrIncorrectDisplay = document.getElementById(
   "correct-or-incorrect-display"
@@ -225,11 +225,18 @@ function displayPageNumber() {
 function reviewCheck(arrIndex: number){
   const correctAnswers = quizArr[arrIndex].correct
   console.log(correctAnswers);
-  
-  if(correctAnswers === Number(selectedRadio.value)){
-    numberCorrect.textContent = `Score: ${counterCorrect + 1} / 20`;
-    console.log(numberCorrect.textContent);
-    
+  const selectedRadio = document.querySelector(
+    'input[name="radio"]:checked') as HTMLInputElement;
+    if(selectedRadio){
+      const selectedAnswer = Number(selectedRadio.value);
+      // selectedRadio.disabled
+      
+      if(correctAnswers === selectedAnswer){
+        counterCorrect++
+        numberCorrect.textContent = `Score: ${counterCorrect} / 20`;
+        console.log(numberCorrect.textContent);
+        
+      }
   }
 }
 
