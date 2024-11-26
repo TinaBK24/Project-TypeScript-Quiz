@@ -1,5 +1,6 @@
 import "./style.css";
 import { IQuestion } from "./interface/IQuestion";
+import 'js-circle-progress';
 
 // ^tina====================
 
@@ -292,31 +293,15 @@ function displayResult() {
       quizStartDisplay.style.display = "none";
 
       //- Circle
-      const percentage = Math.round((counterCorrect / 20) * 100);
+      const circleProgress = document.createElement('circle-progress') as any;
+      circleProgress.value = counterCorrect;
+      circleProgress.max = 20;
 
-      const fillElements = document.querySelectorAll(
-        ".fill"
-      ) as NodeListOf<HTMLElement>;
-      const insideCircle = document.querySelector(
-        ".inside-circle"
-      ) as HTMLDivElement;
-
-      insideCircle.textContent = `${percentage}%`;
-
-      const angle = (counterCorrect / 20) * 360;
-
-      if (angle <= 180) {
-        fillElements[0].style.transform = `rotate(${angle}deg)`;
-        fillElements[1].style.transform = `rotate(0deg)`;
-      } else {
-        fillElements[0].style.transform = "rotate(180deg)";
-        fillElements[1].style.transform = `rotate(${angle - 180}deg)`;
+      const circleDisplay = document.getElementById('circle-display');
+      if (circleDisplay) {
+        circleDisplay.innerHTML = '';
+        circleDisplay.appendChild(circleProgress);
       }
-
-      const resultText = document.getElementById(
-        "result-text"
-      ) as HTMLParagraphElement;
-      resultText.textContent = `Your Score is ${counterCorrect} / 20`;
 
       correctOrIncorrectDisplay.style.display = "none";
       resultDisplay.style.display = "flex";

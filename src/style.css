@@ -127,56 +127,17 @@ input[type="radio"] {
 }
 
 /* - Circle */
+circle-progress {
+  width: 100px;
+  height: 100px;
+  --circle-progress-value-color: #4caf50;
+  --circle-progress-background-color: #e0e0e0;
+  --circle-progress-text-color: #000;
+}
+
 .result-display {
-  height: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.progress-circle {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-}
-
-.circle {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #e6e6e6;
-  overflow: hidden;
-}
-
-.mask,
-.fill {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  clip: rect(0, 75px, 150px, 0);
-}
-
-.mask {
-  clip: rect(0, 150px, 150px, 75px);
-}
-
-.fill {
-  background: #4caf50; /* Колір заповнення */
-  transform: rotate(0deg);
-  transform-origin: center;
-  transition: transform 0.5s;
-}
-
-.inside-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
+  gap: 3rem;
 }
 
 .new-test {

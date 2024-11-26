@@ -32,6 +32,7 @@
         <button type="button" id="start-button">START</button>
       </section>
 
+<<<<<<< HEAD
       <!-- 4 seite QUESTION -->
       <section
         id="quiz-start-display"
@@ -43,6 +44,50 @@
           <p id="number-correct">Score: 0 / 20</p>
         </div>
         <article id="quiz-board" class="flex quiz_board"></article>
+=======
+    <!-- 3 seite START -->
+    <section id="start-button-display" style="display: none">
+      <button type="button" id="start-button">START</button>
+    </section>
+
+    <!-- 4 seite QUESTION -->
+    <section id="quiz-start-display" class="quiz-start-display flex" style="display: none">
+      <div id="numberDisplay" class="number-display flex">
+        <p id="number-quiz"></p>
+        <p id="number-correct">Score: 0 / 20</p>
+      </div>
+      <article id="quiz-board" class="flex quiz_board"></article>
+
+      <article id="correct-or-incorrect-display" style="display: none"></article>
+
+      <div class="pages-buttons flex">
+        <button type="button" id="previoues-btn"></button>
+        <button type="button" id="next-btn"></button>
+        <button type="button" id="seeResult-btn" style="display: none"></button>
+      </div>
+    </section>
+
+    <!-- 5 seite RESULT -->
+    <section id="result" style="display: none" class="result-display">
+      <div id="circle-display">
+        <div class="progress-circle">
+          <div class="circle">
+            <div class="mask full">
+              <div class="fill"></div>
+            </div>
+            <div class="mask half">
+              <div class="fill"></div>
+            </div>
+            <div class="inside-circle">0%</div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="new-test" onclick="window.location.href='./index.html';">New Test</button>
+    </section>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+>>>>>>> tina
 
         <article
           id="correct-or-incorrect-display"
