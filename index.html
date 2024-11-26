@@ -52,18 +52,19 @@
 
     <!-- 5 seite RESULT -->
     <section id="result" style="display: none" class="result-display">
-      <div class="progress-circle">
-        <div class="circle">
-          <div class="mask full">
-            <div class="fill"></div>
+      <div id="circle-display">
+        <div class="progress-circle">
+          <div class="circle">
+            <div class="mask full">
+              <div class="fill"></div>
+            </div>
+            <div class="mask half">
+              <div class="fill"></div>
+            </div>
+            <div class="inside-circle">0%</div>
           </div>
-          <div class="mask half">
-            <div class="fill"></div>
-          </div>
-          <div class="inside-circle">0%</div>
         </div>
       </div>
-      <h1 id="result-text"></h1>
       <button type="button" class="new-test" onclick="window.location.href='./index.html';">New Test</button>
     </section>
   </main>
