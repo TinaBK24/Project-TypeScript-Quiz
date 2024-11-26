@@ -51,15 +51,20 @@ button:hover {
 }
 
 #previoues-btn,
-#next-btn,
-#seeResult-btn {
+#next-btn {
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
   background-color: #d0d1c3;
 }
 #seeResult-btn {
+  width: 8rem;
+  height: 3rem;
+  font-size: 1rem;
   background-color: #e3fd5f;
+}
+#seeResult-btn:hover {
+  background-color: tomato;
 }
 #previoues-btn:hover,
 #next-btn:hover {
@@ -69,6 +74,7 @@ button:hover {
 
 .pages-buttons {
   padding-top: 2rem;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -86,10 +92,10 @@ button:hover {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 2rem;
+  font-weight: 800;
 }
 .quiz-start-display {
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
 }
 main {
   flex-direction: column;
@@ -110,4 +116,8 @@ main {
 #correct-or-incorrect-display {
   font-size: 10rem;
   text-align: center;
+}
+input[type="radio"] {
+  margin-right: 1rem;
+  vertical-align: middle;
 }
