@@ -27,7 +27,9 @@ const startBtn = document.getElementById("start-button") as HTMLButtonElement;
 const quizStartDisplay = document.getElementById(
   "quiz-start-display"
 ) as HTMLDivElement;
-
+const numberDisplay = document.querySelector(
+  "#numberDisplay"
+) as HTMLDivElement;
 const numberQuiz = document.getElementById(
   "number-quiz"
 ) as HTMLParagraphElement;
@@ -52,7 +54,9 @@ const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
 
 //: 5 seite RESULT
 const resultDisplay = document.getElementById("result") as HTMLDivElement;
-
+const seeResultBtn = document.querySelector(
+  "#seeResult-btn"
+) as HTMLButtonElement;
 // ^tina====================
 
 // ^minyeong====================
@@ -104,7 +108,7 @@ function displayQuiz(arrIndex: number) {
   }
 
   displayPageNumber();
-  }
+}
 // ^minyeong====================
 
 // ^tina====================
@@ -205,6 +209,7 @@ function playQuiz() {
     correctOrIncorrectDisplay.style.display = "none";
     turnPage();
     displayQuiz(arrIndex);
+    displayResult();
   });
 
   previouesBtn.addEventListener("click", () => {
@@ -273,7 +278,23 @@ function disableRadioButtons() {
   });
 }
 
-
-
-
 // ^tina====================
+// *Minyeong====================
+function displayResult() {
+  quizBoard.addEventListener("change", () => {
+    if (arrIndex === 19 && quizBoard.style.display === "none") {
+      nextBtn.style.display = "none";
+      seeResultBtn.style.display = "block";
+      seeResultBtn.textContent = "See Result";
+    }
+    seeResultBtn.addEventListener("click", () => {
+      correctOrIncorrectDisplay.style.display = "none";
+      resultDisplay.style.display = "block";
+      numberDisplay.style.display = "none";
+      seeResultBtn.style.display = "none";
+      previouesBtn.style.display = "none";
+      resultDisplay.innerHTML = `<h1>Your Score is ${counterCorrect}</h1>`;
+    });
+  });
+}
+// *Minyeong====================

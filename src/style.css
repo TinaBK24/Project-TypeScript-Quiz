@@ -51,7 +51,8 @@ button:hover {
 }
 
 #previoues-btn,
-#next-btn {
+#next-btn,
+#seeResult-btn {
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
