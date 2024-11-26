@@ -289,12 +289,32 @@ function displayResult() {
       seeResultBtn.style.display = "block";
     }
     seeResultBtn.addEventListener("click", () => {
+      //- Circle
+      const percentage = Math.round((counterCorrect / arrIndex) * 100);
+
+      const fillElements = document.querySelectorAll(".fill") as NodeListOf<HTMLElement>;
+      const insideCircle = document.querySelector(".inside-circle") as HTMLDivElement;
+
+      insideCircle.textContent = `${percentage}%`;
+
+          const angle = (percentage / 100) * 360;
+      if (angle <= 180) {
+        fillElements[0].style.transform = `rotate(${angle}deg)`;
+        fillElements[1].style.transform = `rotate(0deg)`;
+      } else {
+        fillElements[0].style.transform = "rotate(180deg)";
+        fillElements[1].style.transform = `rotate(${angle - 180}deg)`;
+      }
+
+
+      const resultText = document.getElementById("result-text") as HTMLParagraphElement;
+      resultText.textContent = `Your Score is ${counterCorrect}`;
+
       correctOrIncorrectDisplay.style.display = "none";
       resultDisplay.style.display = "block";
       numberDisplay.style.display = "none";
       seeResultBtn.style.display = "none";
       previouesBtn.style.display = "none";
-      resultDisplay.innerHTML = `<h1>Your Score is ${counterCorrect}</h1>`;
     });
   });
 }
