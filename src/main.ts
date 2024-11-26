@@ -150,7 +150,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
 
       startBtn?.addEventListener("click", async () => {
         startBtnDisplay.style.display = "none";
-        quizStartDisplay.style.display = "block";
+        quizStartDisplay.style.display = "flex";
 
         const url = textButton === "EASY" ? EN_EASY_ROUTE : DE_EASY_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
@@ -167,7 +167,7 @@ function lvlButtonsClick(this: HTMLButtonElement) {
 
       startBtn?.addEventListener("click", async () => {
         startBtnDisplay.style.display = "none";
-        quizStartDisplay.style.display = "block";
+        quizStartDisplay.style.display = "flex";
 
         const url = textButton === "HARD" ? EN_HARD_ROUTE : DE_HARD_ROUTE;
         quizArr = (await fetchQuiz(url)) as IQuestion[];
@@ -289,6 +289,8 @@ function displayResult() {
       seeResultBtn.style.display = "block";
     }
     seeResultBtn.addEventListener("click", () => {
+      quizStartDisplay.style.display = "none";
+
       //- Circle
       const percentage = Math.round((counterCorrect / arrIndex) * 100);
 
@@ -308,10 +310,10 @@ function displayResult() {
 
 
       const resultText = document.getElementById("result-text") as HTMLParagraphElement;
-      resultText.textContent = `Your Score is ${counterCorrect}`;
+      resultText.textContent = `Your Score is ${counterCorrect} / 20`;
 
       correctOrIncorrectDisplay.style.display = "none";
-      resultDisplay.style.display = "block";
+      resultDisplay.style.display = "flex";
       numberDisplay.style.display = "none";
       seeResultBtn.style.display = "none";
       previouesBtn.style.display = "none";
