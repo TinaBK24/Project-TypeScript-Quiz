@@ -124,12 +124,14 @@ function langButtonsClick(this: HTMLButtonElement) {
     easyBtn.style.marginRight = "2rem";
     previouesBtn.textContent = "Previous";
     nextBtn.textContent = "Next";
+    seeResultBtn.textContent = "See Result";
   } else if (this === deBtn) {
     easyBtn.textContent = "LEICHT";
     hardBtn.textContent = "SCHWER";
     easyBtn.style.marginRight = "2rem";
     previouesBtn.textContent = "Zurück";
     nextBtn.textContent = "Weiter";
+    seeResultBtn.textContent = "Dein Ergebnis";
   } else {
     console.error("Buttons wurden nicht gefunden");
   }
@@ -285,7 +287,6 @@ function displayResult() {
     if (arrIndex === 19 && quizBoard.style.display === "none") {
       nextBtn.style.display = "none";
       seeResultBtn.style.display = "block";
-      seeResultBtn.textContent = "See Result";
     }
     seeResultBtn.addEventListener("click", () => {
       correctOrIncorrectDisplay.style.display = "none";

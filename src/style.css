@@ -58,6 +58,9 @@ button:hover {
   font-size: 1rem;
   background-color: #d0d1c3;
 }
+#seeResult-btn {
+  background-color: #e3fd5f;
+}
 #previoues-btn:hover,
 #next-btn:hover {
   color: #000;
